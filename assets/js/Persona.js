@@ -17,6 +17,10 @@ class Persona{
         this.correo = correo;
     }
 
+    get nombreCompleto(){
+        return this.nombre + ' ' + this.apellido;
+    }
+
     static agregar(persona){
         Persona.personas.push(persona);
         return true;

@@ -1,10 +1,15 @@
 class Prestamo{
+    id
     Libro
     Persona
     fechaPrestamo
     fechaDevolucion
 
+    static prestamos = []
+    static ultimoId = 1;
+
     constructor(Libro, Persona){
+        this.id = 0;
         this.Libro = Libro;
         this.Persona = Persona
         this.fechaPrestamo = new Date();
@@ -18,6 +23,17 @@ class Prestamo{
             return "Prestado";
         else
             return "Devuelto";
+    }
+
+    static buscar(id){
+        return Prestamo.prestamos.find(b => b.id == id);
+    }
+
+    static agregar(prestamo){
+        prestamo.id = Prestamo.ultimoId;
+        Prestamo.prestamos.push(prestamo);
+        Prestamo.ultimoId++;
+        return true;
     }
 
     devolver() {

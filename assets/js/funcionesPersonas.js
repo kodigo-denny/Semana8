@@ -21,8 +21,7 @@ modalPersona.addEventListener('hidden.bs.modal', (e) =>{
 })
 
 btnNuevaPersona.addEventListener('click', (e) =>{
-
-    //txtDui.attributes.disabled = "disabled";
+    txtDui.disabled = false;
 })
 
 btnGuardarPersona.addEventListener('click', (e) => {
@@ -64,6 +63,8 @@ function editarPersona(dui){
     txtDireccion.value = persona.direccion;
     txtTelefono.value = persona.telefono;
     txtCorreo.value = persona.correo;
+
+    txtDui.disabled = true;
 }
 
 

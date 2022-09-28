@@ -21,8 +21,11 @@ const crudPrestamo = document.querySelector('#crudPrestamo');
 
 const cbPersona = document.querySelector('#cbPersona');
 
+const btnConfirmar = document.querySelector('#btnConfirmar');
+
 let libro;
 let nuevo = true;
+let libroPrestar;
 
 menuLibros.addEventListener('click', (e) => {
     crudLibro.classList = "";
@@ -134,7 +137,7 @@ function actualizarTablaLibro(){
 }
 
 function prestar(id){
-    let libroPrestar = Libro.buscar(id);
+    libroPrestar = Libro.buscar(id);
 
     let elementosSelect = "";
     for(let i = 0; i < Persona.personas.length; i++){
@@ -143,5 +146,23 @@ function prestar(id){
     
     cbPersona.innerHTML = elementosSelect;
 }
+
+btnConfirmar.addEventListener('click', (e) => {
+    //console.log(libroPrestar);
+    //console.log(cbPersona.value);
+
+    let persona = Persona.buscar(cbPersona.value);
+
+    let prestamo = new Prestamo(libroPrestar, persona);
+
+    Prestamo.agregar(prestamo);
+
+    actualizarTablaLibro();
+    actualizarTablaPrestamo();
+
+    $("#modalPrestar").modal('hide');
+
+    console.log(Prestamo.prestamos);
+})
 
 actualizarTablaLibro();
